@@ -1,8 +1,8 @@
 {
-    "name": "3f/eocsvr",
-    "description": "A complete CouchDB server written in PHP.",
-    "keywords": ["couchdb", "server", "view server", "query server", "nosql"],
-    "homepage": "http://github.com/dedalozzo/EOCSvr",
+    "name": "3f/eoc-console",
+    "description": "CouchDB Command-Line Client.",
+    "keywords": ["couchdb", "console", "client", "command-line", "nosql"],
+    "homepage": "http://github.com/dedalozzo/eoc-console",
     "type": "library",
     "license": "Apache License 2.0",
     "authors": [
