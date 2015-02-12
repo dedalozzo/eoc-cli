@@ -15,7 +15,6 @@
     "require": {
         "php": ">=5.4.0",
         "3f/eoc-client": "dev-master",
-        "3f/lint": "dev-master",
         "symfony/console": "2.5.0",
         "monolog/monolog": "1.9.1"
     },
