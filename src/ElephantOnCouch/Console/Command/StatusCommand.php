@@ -20,7 +20,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @nosubgrouping
  */
 class StatusCommand extends AbstractCommand {
-  private $couch;
 
 
   /**
@@ -36,8 +35,6 @@ class StatusCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $this->couch = $this->di['couchdb'];
-
     print_r($this->couch->getActiveTasks());
 
     parent::execute($input, $output);
