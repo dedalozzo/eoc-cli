@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 
 /**
- * @brief Displays information about PitPress, like version, database, etc.
+ * @brief Displays information about the selected database.
  * @nosubgrouping
  */
 class InfoCommand extends AbstractCommand {
