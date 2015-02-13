@@ -48,9 +48,6 @@ class DeleteCommand extends AbstractCommand {
 
       $couch->deleteDb($config->couchdb->database);
 
-      $redis = $this->di['redis'];
-      $redis->flushDB();
-
       parent::execute($input, $output);
     }
   }
