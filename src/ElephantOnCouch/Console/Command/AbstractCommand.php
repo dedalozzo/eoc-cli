@@ -27,7 +27,7 @@ use ElephantOnCouch\Helper\TimeHelper;
  */
 abstract class AbstractCommand extends Command {
 
-  protected $di;
+  protected $couch;
   protected $monolog;
 
   protected $start;
