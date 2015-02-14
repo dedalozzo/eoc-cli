@@ -30,13 +30,13 @@ try {
   // Initializes the Composer autoloading system. (Note: We don't use the Phalcon loader.)
   require $root."/vendor/autoload.php";
 
-  $monolog = new Logger('couch');
+  $log = new Logger('couch');
 
   // Registers the Monolog error handler to log errors and exceptions.
-  ErrorHandler::register($monolog);
+  ErrorHandler::register($log);
 
   // Creates a stream handler to log debugging messages.
-  $monolog->pushHandler(new StreamHandler($root.$config->application->logDir."couch.log", Logger::DEBUG));
+  $log->pushHandler(new StreamHandler($root.'/'.$config->application->logDir."couch.log", Logger::DEBUG));
 
   // Creates the application object.
   $console = new Console('ElephantOnCouch Console', Version::getNumber());
