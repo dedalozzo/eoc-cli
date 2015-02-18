@@ -36,7 +36,7 @@ try {
   ErrorHandler::register($log);
 
   // Creates a stream handler to log debugging messages.
-  $log->pushHandler(new StreamHandler($root.'/'.$config->application->logDir."couch.log", Logger::DEBUG));
+  $log->pushHandler(new StreamHandler($root.'/log/couch.log', Logger::DEBUG));
 
   // Creates the application object.
   $console = new Console('ElephantOnCouch Console', Version::getNumber());
@@ -44,6 +44,7 @@ try {
 
   $console->add(new Command\VersionCommand());
   $console->add(new Command\StatusCommand());
+  $console->add(new Command\ConnectCommand());
   $console->add(new Command\UseCommand());
   $console->add(new Command\InfoCommand());
   $console->add(new Command\CommitCommand());
