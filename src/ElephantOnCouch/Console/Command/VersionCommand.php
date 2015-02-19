@@ -45,8 +45,6 @@ class VersionCommand extends AbstractCommand {
     echo PHP_EOL;
     echo "[client]".PHP_EOL;
     echo $couch->getClientInfo();
-
-    parent::execute($input, $output);
   }
 
 }
