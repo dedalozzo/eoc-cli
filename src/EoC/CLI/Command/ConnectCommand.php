@@ -62,7 +62,7 @@ class ConnectCommand extends AbstractCommand {
 
     $server = (string)$input->getOption('server');
 
-    $couch = new Couch(new Adapter\CurlAdapter($host, $user, $password));
+    $couch = new Couch(new Adapter\CurlAdapter($server, $user, $password));
     $couch->getServerInfo(); // Checks the connection.
 
     $connection = [];
@@ -72,7 +72,7 @@ class ConnectCommand extends AbstractCommand {
 
     $serialized = serialize($connection);
 
-    $shmKey = ftok(__FILE__, 'connection');
+    $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
     $shmId = shmop_open($shmKey, "c", 0644, mb_strlen($serialized));
 
     if ($shmId) {
