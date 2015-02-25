@@ -27,7 +27,7 @@ class StatusCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("status");
-    $this->setDescription("Gets list of active tasks.");
+    $this->setDescription("Gets the list of active tasks.");
   }
 
 
@@ -35,9 +35,8 @@ class StatusCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    print_r($this->couch->getActiveTasks());
-
-    parent::execute($input, $output);
+    $couch = $this->getConnection();
+    print_r($couch->getActiveTasks());
   }
 
 }
