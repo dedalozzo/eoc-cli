@@ -47,9 +47,10 @@ try {
   $console = new Console('EoC CLI', Version::getNumber());
   //$console->setCatchExceptions(FALSE);
 
+  $console->add(new Command\ConnectCommand());
   $console->add(new Command\VersionCommand());
   $console->add(new Command\StatusCommand());
-  $console->add(new Command\ConnectCommand());
+  $console->add(new Command\RestartCommand());
   $console->add(new Command\UseCommand());
   $console->add(new Command\InfoCommand());
   $console->add(new Command\CommitCommand());
