@@ -38,12 +38,10 @@ class InfoCommand extends AbstractCommand {
    * @return string Information about current database.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
+    $couch = $this->getConnection();
 
     echo "[database]".PHP_EOL;
     echo $couch->getDbInfo();
-
-    parent::execute($input, $output);
   }
 
 }
