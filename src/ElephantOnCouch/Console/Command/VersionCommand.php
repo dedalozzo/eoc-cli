@@ -26,7 +26,7 @@ class VersionCommand extends AbstractCommand {
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("about");
+    $this->setName("version");
     $this->setDescription("Displays CouchDB server and client versions.");
   }
 
@@ -38,7 +38,7 @@ class VersionCommand extends AbstractCommand {
    * @return string Information about CouchDB's client, server and the PitPress database.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
+    $couch = $this->getConnection();
 
     echo "[server]".PHP_EOL;
     echo $couch->getServerInfo();
