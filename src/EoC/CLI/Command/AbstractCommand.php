@@ -80,16 +80,15 @@ abstract class AbstractCommand extends Command {
 
 
   protected function getConnection() {
-    $shmKey = ftok(__FILE__, 'connection');
+    $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
 
-    $shmId = shmop_open($shmKey, "c", 0644, 0);
-    if ($shmId) {
+    if ($shmId = shmop_open($shmKey, "a", 0, 0)) {
       // Gets shared memory block's size.
       $shmSize = shmop_size($shmId);
 
       // Now lets read the memory segment.
       if ($buffer = shmop_read($shmId, 0, $shmSize)) {
-        $serialized = substr($buffer, 0, strpos($buffer, "\0"));
+        $serialized = $buffer;
         $connection = unserialize($serialized);
       }
       else
