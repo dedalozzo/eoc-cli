@@ -2,7 +2,7 @@
     "name": "3f/eoc-cli",
     "description": "CouchDB Command-Line Client.",
     "keywords": ["couchdb", "command-line client", "nosql"],
-    "homepage": "http://github.com/dedalozzo/eoc-console",
+    "homepage": "http://github.com/dedalozzo/eoc-cli",
     "type": "library",
     "license": "Apache License 2.0",
     "authors": [
