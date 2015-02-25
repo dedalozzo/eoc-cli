@@ -8,14 +8,14 @@
  * @author Filippo F. Fadda
  */
 
-error_reporting (E_ALL & ~(E_NOTICE | E_STRICT));
+error_reporting(E_ALL & ~(E_NOTICE | E_STRICT));
 
 $loader = require_once __DIR__ . "/../vendor/autoload.php";
 
 
-use ElephantOnCouch\Console\Console;
-use ElephantOnCouch\Console\Command;
-use ElephantOnCouch\Console\Version;
+use ElephantOnCouch\CLI\Console;
+use ElephantOnCouch\CLI\Command;
+use ElephantOnCouch\CLI\Version;
 
 use Monolog\Logger;
 use Monolog\ErrorHandler;
@@ -40,7 +40,7 @@ try {
 
   // Creates the application object.
   $console = new Console('ElephantOnCouch Console', Version::getNumber());
-  $console->setCatchExceptions(FALSE);
+  //$console->setCatchExceptions(FALSE);
 
   $console->add(new Command\VersionCommand());
   $console->add(new Command\StatusCommand());
