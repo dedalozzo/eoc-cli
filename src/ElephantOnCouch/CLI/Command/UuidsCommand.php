@@ -8,7 +8,7 @@
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,15 +28,15 @@ class LogCommand extends AbstractCommand {
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("log");
-    $this->setDescription("Returns the tail of the server's log file.");
+    $this->setName("uuids");
+    $this->setDescription("Returns a list of generated UUIDs.");
 
     // General options.
-    $this->addOption("bytes",
+    $this->addOption("count",
       NULL,
       InputOption::VALUE_OPTIONAL,
-      "How many bytes to return from the end of the log file.",
-      1000);
+      "Requested UUIDs number.",
+      1);
   }
 
 
@@ -44,8 +44,8 @@ class LogCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $bytes = (int)$input->getOption('bytes');
-    $this->couch->getLogTail($bytes);
+    $count = (int)$input->getOption('count');
+    $this->couch->getUuids($count);
 
     parent::execute($input, $output);
   }

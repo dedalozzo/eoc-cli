@@ -9,15 +9,17 @@
 
 
 //! This is the Commands namespace.
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
+
+use ElephantOnCouch\Adapter\AbstractAdapter;
+use ElephantOnCouch\Adapter\CurlAdapter;
+use ElephantOnCouch\Couch;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use ElephantOnCouch\Helper\TimeHelper;
 
 
 /**
@@ -27,19 +29,11 @@ use ElephantOnCouch\Helper\TimeHelper;
  */
 abstract class AbstractCommand extends Command {
 
-  protected $couch;
-  protected $monolog;
-
-  protected $start;
-
-
   /**
    * @brief Creates an instance of the command.
    */
   public function __construct() {
     parent::__construct();
-
-    $this->start = time();
   }
 
 
@@ -89,23 +83,34 @@ abstract class AbstractCommand extends Command {
   }
 
 
-  /**
-   * @brief Executes the command.
-   */
-  protected function execute(InputInterface $input, OutputInterface $output) {
-    $time = TimeHelper::since($this->start);
-    $output->writeln(PHP_EOL.sprintf("%d days, %d hours, %d minutes, %d seconds", $time['days'], $time['hours'], $time['minutes'], $time['seconds']));
+  protected function getConnection() {
+    $shmKey = ftok(__FILE__, 'connection');
+
+    $shmId = shmop_open($shmKey, "c", 0644, 0);
+    if ($shmId) {
+      // Gets shared memory block's size.
+      $shmSize = shmop_size($shmId);
+
+      // Now lets read the memory segment.
+      if ($buffer = shmop_read($shmId, 0, $shmSize)) {
+        $serialized = substr($buffer, 0, strpos($buffer, "\0"));
+        $connection = unserialize($serialized);
+      }
+      else
+        throw new \RuntimeException("You are not connected to the server.");
+
+      shmop_close($shmId);
+    }
+    else
+      throw new \RuntimeException("You are not connected to the server.");
+
+
+    return new Couch(new CurlAdapter($connection['server'], $connection['user'], $connection['password']));
   }
 
 
-  /**
-   * @brief Overrides this method to set the Dependency Injector.
-   */
-  public function setApplication(Application $application = null) {
-    parent::setApplication($application);
+  protected function getDatabase() {
 
-    if ($application)
-      $this->setDi($application->getDi());
   }
 
 }

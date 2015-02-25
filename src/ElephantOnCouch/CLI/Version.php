@@ -6,7 +6,7 @@
 //! @author Filippo F. Fadda
 
 
-namespace ElephantOnCouch\Console;
+namespace ElephantOnCouch\CLI;
 
 
 //! @brief This helper class is aimed to provide the software version number.

@@ -8,7 +8,7 @@
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputArgument;

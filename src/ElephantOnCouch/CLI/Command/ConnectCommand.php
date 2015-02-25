@@ -8,7 +8,7 @@
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use ElephantOnCouch\Couch;
 use ElephantOnCouch\Adapter;
-use ElephantOnCouch\Opt\ViewQueryOpts;
 
 
 /**
@@ -40,16 +39,16 @@ class ConnectCommand extends AbstractCommand {
       InputArgument::REQUIRED,
       "The CouchDB user name to use when connecting to the server.");
 
-    $this->addOption("host",
-      "t",
-      InputOption::VALUE_REQUIRED,
-      "Connects to the CouchDB server on the given host.");
+    $this->addOption("server",
+      "s",
+      InputOption::VALUE_OPTIONAL,
+      "Connects to the CouchDB server on the given host. Server must be expressed as host:port according to RFC 3986.",
+      Adapter\AbstractAdapter::DEFAULT_SERVER);
   }
 
 
   /**
    * @brief Executes the command.
-   * @bug https://github.com/dedalozzo/pit-press/issues/1
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $user = (string)$input->getArgument('user');
@@ -61,13 +60,13 @@ class ConnectCommand extends AbstractCommand {
       FALSE
     );
 
-    $host = (string)$input->getOption('host');
+    $server = (string)$input->getOption('server');
 
     $couch = new Couch(new Adapter\CurlAdapter($host, $user, $password));
     $couch->getServerInfo(); // Checks the connection.
 
     $connection = [];
-    $connection['host'] = $host;
+    $connection['server'] = $server;
     $connection['user'] = $user;
     $connection['password'] = $password;
 
@@ -81,7 +80,7 @@ class ConnectCommand extends AbstractCommand {
       shmop_close($shmId);
     }
     else
-      die ("Couldn't create shared memory segment\n");
+      throw new \RuntimeException("Couldn't create shared memory segment.");
   }
 
 }

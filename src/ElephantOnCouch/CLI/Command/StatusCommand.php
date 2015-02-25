@@ -1,35 +1,33 @@
 <?php
 
 /**
- * @file CompactCommand.php
- * @brief This file contains the CompactCommand class.
+ * @file StatusCommand.php
+ * @brief This file contains the StatusCommand class.
  * @details
  * @author Filippo F. Fadda
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use ElephantOnCouch\Couch;
-
 
 /**
- * @brief Starts a compaction for the current selected database.
+ * @brief Gets PitPress list of active tasks.
  * @nosubgrouping
  */
-class CompactCommand extends AbstractCommand {
+class StatusCommand extends AbstractCommand {
 
 
   /**
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("compact");
-    $this->setDescription("Starts a compaction for the current selected database.");
+    $this->setName("status");
+    $this->setDescription("Gets list of active tasks.");
   }
 
 
@@ -37,9 +35,7 @@ class CompactCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
-
-    $couch->compactDb();
+    print_r($this->couch->getActiveTasks());
 
     parent::execute($input, $output);
   }

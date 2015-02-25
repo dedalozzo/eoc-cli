@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @file InfoCommand.php
- * @brief This file contains the InfoCommand class.
+ * @file RestartCommand.php
+ * @brief This file contains the RestartCommand class.
  * @details
  * @author Filippo F. Fadda
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,18 +16,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 
 /**
- * @brief Displays information about the selected database.
+ * @brief Restarts CouchDB.
  * @nosubgrouping
  */
-class InfoCommand extends AbstractCommand {
+class RestartCommand extends AbstractCommand {
 
 
   /**
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("info");
-    $this->setDescription("Displays information about the selected database.");
+    $this->setName("restart");
+    $this->setDescription("Restarts CouchDB server.");
   }
 
 
@@ -35,13 +35,10 @@ class InfoCommand extends AbstractCommand {
    * @brief Executes the command.
    * @param[in] InputInterface $input The input interface
    * @param[in] OutputInterface $output The output interface
-   * @return string Information about current database.
+   * @return string Information about CouchDB's client, server and the PitPress database.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
-
-    echo "[database]".PHP_EOL;
-    echo $couch->getDbInfo();
+    $this->couch->restart();
 
     parent::execute($input, $output);
   }

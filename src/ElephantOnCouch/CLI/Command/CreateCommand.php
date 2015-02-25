@@ -1,14 +1,14 @@
 <?php
 
-/**
- * @file UseCommand.php
- * @brief This file contains the UseCommand class.
+/*
+ * @file CreateCommand.php
+ * @brief This file contains the CreateCommand class.
  * @details
  * @author Filippo F. Fadda
  */
 
 
-namespace ElephantOnCouch\Console\Command;
+namespace ElephantOnCouch\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,19 +19,18 @@ use ElephantOnCouch\Adapter\NativeAdapter;
 
 
 /**
- * @brief Selects the specified database.
+ * @brief Creates a new PitPress database.
  * @nosubgrouping
  */
-class UseCommand extends AbstractCommand {
+class CreateCommand extends AbstractCommand {
 
 
   /**
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("use");
-    $this->setDescription("Deletes the PitPress database.");
-    $this->setAliases(['select, connect']);
+    $this->setName("create");
+    $this->setDescription("Creates a new database.");
   }
 
 
@@ -43,10 +42,7 @@ class UseCommand extends AbstractCommand {
 
     $couch = new Couch(new NativeAdapter(NativeAdapter::DEFAULT_SERVER, $config->couchdb->user, $config->couchdb->password));
 
-    $couch->deleteDb($config->couchdb->database);
-
-    $redis = $this->di['redis'];
-    $redis->flushDB();
+    $couch->createDb($config->couchdb->database);
 
     parent::execute($input, $output);
   }
