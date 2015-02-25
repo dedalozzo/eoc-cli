@@ -20,6 +20,6 @@
         "monolog/monolog": "1.9.1"
     },
     "autoload": {
-        "psr-0": {"ElephantOnCouch": "src/"}
+        "psr-0": {"EoC\\": "src/"}
     }
 }
