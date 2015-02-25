@@ -12,14 +12,10 @@
 namespace EoC\CLI\Command;
 
 
-use EoC\Adapter\AbstractAdapter;
 use EoC\Adapter\CurlAdapter;
 use EoC\Couch;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 
 /**
