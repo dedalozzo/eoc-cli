@@ -11,11 +11,9 @@
 namespace EoC\CLI\Command;
 
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use EoC\Couch;
-use EoC\Adapter\NativeAdapter;
 
 
 /**
@@ -30,8 +28,12 @@ class UseCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("use");
-    $this->setDescription("Deletes the PitPress database.");
-    $this->setAliases(['select, connect']);
+    $this->setDescription("Uses the specified database.");
+    $this->setAliases(['select']);
+
+    $this->addArgument("database",
+      InputArgument::REQUIRED,
+      "The CouchDB database name to use.");
   }
 
 
@@ -39,13 +41,17 @@ class UseCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $config = $this->di['config'];
+    $database = (string)$input->getArgument('database');
 
+    $shmKey = ftok($_SERVER['PHP_SELF'], 'd');
+    $shmId = shmop_open($shmKey, "c", 0644, mb_strlen($database));
 
-
-
-
-    parent::execute($input, $output);
+    if ($shmId) {
+      $shmBytesWritten = shmop_write($shmId, $database, 0);
+      shmop_close($shmId);
+    }
+    else
+      throw new \RuntimeException("Couldn't create shared memory segment.");
   }
 
 }
