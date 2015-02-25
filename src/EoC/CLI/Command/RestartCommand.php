@@ -38,9 +38,7 @@ class RestartCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->restart();
-
-    parent::execute($input, $output);
+    $couch->restartServer();
   }
 
 }
