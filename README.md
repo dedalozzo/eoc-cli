@@ -1,3 +1,9 @@
+[![Latest Stable Version](https://poser.pugx.org/3f/eoc-cli/v/stable.png)](https://packagist.org/packages/3f/eoc-cli)
+[![Latest Unstable Version](https://poser.pugx.org/3f/eoc-cli/v/unstable.png)](https://packagist.org/packages/3f/eoc-cli)
+[![License](https://poser.pugx.org/3f/eoc-cli/license.svg)](https://packagist.org/packages/3f/eoc-cli)
+[![Total Downloads](https://poser.pugx.org/3f/eoc-cli/downloads.png)](https://packagist.org/packages/3f/eoc-cli)
+
+
 Elephant on Couch Command-Line Interface
 ========================================
 EoC CLI is a CouchDB's Command-Line Interface (CLI) made in PHP programming language.
