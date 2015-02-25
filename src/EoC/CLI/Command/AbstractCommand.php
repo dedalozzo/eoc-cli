@@ -9,12 +9,12 @@
 
 
 //! This is the Commands namespace.
-namespace ElephantOnCouch\CLI\Command;
+namespace EoC\CLI\Command;
 
 
-use ElephantOnCouch\Adapter\AbstractAdapter;
-use ElephantOnCouch\Adapter\CurlAdapter;
-use ElephantOnCouch\Couch;
+use EoC\Adapter\AbstractAdapter;
+use EoC\Adapter\CurlAdapter;
+use EoC\Couch;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Application;

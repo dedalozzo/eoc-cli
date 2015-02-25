@@ -8,14 +8,14 @@
  */
 
 
-namespace ElephantOnCouch\CLI\Command;
+namespace EoC\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use ElephantOnCouch\Couch;
-use ElephantOnCouch\Adapter\NativeAdapter;
+use EoC\Couch;
+use EoC\Adapter\NativeAdapter;
 
 
 /**

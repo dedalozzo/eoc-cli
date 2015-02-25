@@ -13,9 +13,9 @@ error_reporting(E_ALL & ~(E_NOTICE | E_STRICT));
 $loader = require_once __DIR__ . "/../vendor/autoload.php";
 
 
-use ElephantOnCouch\CLI\Console;
-use ElephantOnCouch\CLI\Command;
-use ElephantOnCouch\CLI\Version;
+use EoC\CLI\Console;
+use EoC\CLI\Command;
+use EoC\CLI\Version;
 
 use Monolog\Logger;
 use Monolog\ErrorHandler;
@@ -39,7 +39,7 @@ try {
   $log->pushHandler(new StreamHandler($root.'/log/couch.log', Logger::DEBUG));
 
   // Creates the application object.
-  $console = new Console('ElephantOnCouch Console', Version::getNumber());
+  $console = new Console('EoC CLI', Version::getNumber());
   //$console->setCatchExceptions(FALSE);
 
   $console->add(new Command\VersionCommand());

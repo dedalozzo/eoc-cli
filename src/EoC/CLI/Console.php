@@ -11,7 +11,7 @@
 /**
  * @brief This namespace contains the Console class.
  */
-namespace ElephantOnCouch\CLI;
+namespace EoC\CLI;
 
 
 use Symfony\Component\Console\Application;

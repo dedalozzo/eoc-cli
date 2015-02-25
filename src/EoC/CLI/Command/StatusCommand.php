@@ -1,37 +1,33 @@
 <?php
 
 /**
- * @file UseCommand.php
- * @brief This file contains the UseCommand class.
+ * @file StatusCommand.php
+ * @brief This file contains the StatusCommand class.
  * @details
  * @author Filippo F. Fadda
  */
 
 
-namespace ElephantOnCouch\CLI\Command;
+namespace EoC\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use ElephantOnCouch\Couch;
-use ElephantOnCouch\Adapter\NativeAdapter;
-
 
 /**
- * @brief Selects the specified database.
+ * @brief Gets PitPress list of active tasks.
  * @nosubgrouping
  */
-class UseCommand extends AbstractCommand {
+class StatusCommand extends AbstractCommand {
 
 
   /**
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("use");
-    $this->setDescription("Deletes the PitPress database.");
-    $this->setAliases(['select, connect']);
+    $this->setName("status");
+    $this->setDescription("Gets list of active tasks.");
   }
 
 
@@ -39,11 +35,7 @@ class UseCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $config = $this->di['config'];
-
-
-
-
+    print_r($this->couch->getActiveTasks());
 
     parent::execute($input, $output);
   }

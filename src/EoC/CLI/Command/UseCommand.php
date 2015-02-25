@@ -1,33 +1,37 @@
 <?php
 
 /**
- * @file CleanupCommand.php
- * @brief This file contains the CleanupCommand class.
+ * @file UseCommand.php
+ * @brief This file contains the UseCommand class.
  * @details
  * @author Filippo F. Fadda
  */
 
 
-namespace ElephantOnCouch\CLI\Command;
+namespace EoC\CLI\Command;
 
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use EoC\Couch;
+use EoC\Adapter\NativeAdapter;
+
 
 /**
- * @brief Removes all outdated view indexes.
+ * @brief Selects the specified database.
  * @nosubgrouping
  */
-class CleanupCommand extends AbstractCommand {
+class UseCommand extends AbstractCommand {
 
 
   /**
    * @brief Configures the command.
    */
   protected function configure() {
-    $this->setName("cleanup");
-    $this->setDescription("Removes all outdated view indexes.");
+    $this->setName("use");
+    $this->setDescription("Deletes the PitPress database.");
+    $this->setAliases(['select, connect']);
   }
 
 
@@ -35,9 +39,11 @@ class CleanupCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
+    $config = $this->di['config'];
 
-    $couch->cleanupViews();
+
+
+
 
     parent::execute($input, $output);
   }
