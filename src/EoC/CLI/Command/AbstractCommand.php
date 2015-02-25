@@ -79,6 +79,10 @@ abstract class AbstractCommand extends Command {
   }
 
 
+  /**
+   * @brief Retrieves the connection in use.
+   * @return \EoC\Couch The server connection.
+   */
   protected function getConnection() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
 
@@ -87,10 +91,8 @@ abstract class AbstractCommand extends Command {
       $shmSize = shmop_size($shmId);
 
       // Now lets read the memory segment.
-      if ($buffer = shmop_read($shmId, 0, $shmSize)) {
-        $serialized = $buffer;
-        $connection = unserialize($serialized);
-      }
+      if ($buffer = shmop_read($shmId, 0, $shmSize))
+        $connection = unserialize($buffer);
       else
         throw new \RuntimeException("You are not connected to the server.");
 
@@ -99,13 +101,33 @@ abstract class AbstractCommand extends Command {
     else
       throw new \RuntimeException("You are not connected to the server.");
 
-
     return new Couch(new CurlAdapter($connection['server'], $connection['user'], $connection['password']));
   }
 
 
+  /**
+   * @brief Retrieves the database in use.
+   * @return string The database name.
+   */
   protected function getDatabase() {
+    $shmKey = ftok($_SERVER['PHP_SELF'], 'd');
 
+    if ($shmId = shmop_open($shmKey, "a", 0, 0)) {
+      // Gets shared memory block's size.
+      $shmSize = shmop_size($shmId);
+
+      // Now lets read the memory segment.
+      if ($buffer = shmop_read($shmId, 0, $shmSize))
+        $database = unserialize($buffer);
+      else
+        throw new \RuntimeException("You are not connected to the server.");
+
+      shmop_close($shmId);
+    }
+    else
+      throw new \RuntimeException("You are not connected to the server.");
+
+    return $database;
   }
 
 }
