@@ -8,6 +8,11 @@
  * @author Filippo F. Fadda
  */
 
+
+if (PHP_SAPI !== 'cli')
+  echo 'Warning: EoC CLI should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI.';
+
+
 error_reporting(E_ALL & ~(E_NOTICE | E_STRICT));
 
 $loader = require_once __DIR__ . "/../vendor/autoload.php";
