@@ -35,10 +35,10 @@ class RestartCommand extends AbstractCommand {
    * @brief Executes the command.
    * @param[in] InputInterface $input The input interface
    * @param[in] OutputInterface $output The output interface
-   * @return string Information about CouchDB's client, server and the PitPress database.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $this->couch->restart();
+    $couch = $this->getConnection();
+    $couch->restart();
 
     parent::execute($input, $output);
   }
