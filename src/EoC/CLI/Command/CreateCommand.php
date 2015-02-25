@@ -11,11 +11,9 @@
 namespace EoC\CLI\Command;
 
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use EoC\Couch;
-use EoC\Adapter\NativeAdapter;
 
 
 /**
@@ -31,6 +29,10 @@ class CreateCommand extends AbstractCommand {
   protected function configure() {
     $this->setName("create");
     $this->setDescription("Creates a new database.");
+
+    $this->addArgument("database",
+      InputArgument::REQUIRED,
+      "The CouchDB database name to use.");
   }
 
 
@@ -38,13 +40,11 @@ class CreateCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $config = $this->di['config'];
+    $database = (string)$input->getArgument('database');
 
-    $couch = new Couch(new NativeAdapter(NativeAdapter::DEFAULT_SERVER, $config->couchdb->user, $config->couchdb->password));
+    $couch = $this->getConnection();
 
-    $couch->createDb($config->couchdb->database);
-
-    parent::execute($input, $output);
+    $couch->createDb($database);
   }
 
 }
