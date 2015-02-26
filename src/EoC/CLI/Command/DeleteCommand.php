@@ -11,11 +11,9 @@
 namespace EoC\CLI\Command;
 
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use EoC\Couch;
-use EoC\Adapter\NativeAdapter;
 
 
 /**
@@ -31,6 +29,10 @@ class DeleteCommand extends AbstractCommand {
   protected function configure() {
     $this->setName("delete");
     $this->setDescription("Deletes the PitPress database.");
+
+    $this->addArgument("database",
+      InputArgument::REQUIRED,
+      "The CouchDB database name to delete.");
   }
 
 
@@ -38,18 +40,25 @@ class DeleteCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
+    $database = (string)$input->getArgument('database');
+
+    $couch = $this->getConnection();
+
+    try {
+      $selected = $this->getDatabase();
+    }
+    catch (\RuntimeException $e) {
+      $selected = '';
+    }
+
+    if ($database === $selected)
+      throw new \RunTimeException("You cannot delete the selected database.");
+
     $dialog = $this->getHelperSet()->get('dialog');
     $confirm = $dialog->ask($output, 'Are you sure you want delete the database? [Y/n]'.PHP_EOL, 'n');
 
-    if ($confirm == 'Y') {
-      $config = $this->di['config'];
-
-      $couch = new Couch(new NativeAdapter(NativeAdapter::DEFAULT_SERVER, $config->couchdb->user, $config->couchdb->password));
-
-      $couch->deleteDb($config->couchdb->database);
-
-      parent::execute($input, $output);
-    }
+    if ($confirm == 'Y')
+      $couch->deleteDb($database);
   }
 
 }
