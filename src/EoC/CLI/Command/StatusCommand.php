@@ -36,7 +36,7 @@ class StatusCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    print_r($couch->getActiveTasks());
+    $output->writeln(json_encode($couch->getActiveTasks(), TRUE));
   }
 
 }
