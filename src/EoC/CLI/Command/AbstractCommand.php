@@ -86,7 +86,7 @@ abstract class AbstractCommand extends Command {
   protected function getConnection() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
 
-    if ($shmId = shmop_open($shmKey, "a", 0, 0)) {
+    if (@$shmId = shmop_open($shmKey, "a", 0, 0)) {
       // Gets shared memory block's size.
       $shmSize = shmop_size($shmId);
 
@@ -112,13 +112,13 @@ abstract class AbstractCommand extends Command {
   protected function getDatabase() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'd');
 
-    if ($shmId = shmop_open($shmKey, "a", 0, 0)) {
+    if (@$shmId = shmop_open($shmKey, "a", 0, 0)) {
       // Gets shared memory block's size.
       $shmSize = shmop_size($shmId);
 
       // Now lets read the memory segment.
       if ($buffer = shmop_read($shmId, 0, $shmSize))
-        $database = unserialize($buffer);
+        $database = $buffer;
       else
         throw new \RuntimeException("No database selected.");
 
