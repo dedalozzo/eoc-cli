@@ -130,7 +130,11 @@ couch version
 
 Queries a view and outputs the result. 
 ``` sh
-couch query [--key="..."] [--startkey="..."] [--endkey="..."] [--startkey-docid="..."] [--endkey-docid="..."] [--limit="..."] [--group-results] [--group-level="..."] [--do-not-reduce] [--include-docs] [--exclude-results] [--exclude-endkey] [--reverse-order] [--skip="..."] [--include-conflicts] [--include-missing-keys] [--map="..."] [--reduce="..."] [--language="..."] design-doc/view-name [keys1] ... [keysN]
+couch query [--key="..."] [--startkey="..."] [--endkey="..."] [--startkey-docid="..."] 
+[--endkey-docid="..."] [--limit="..."] [--group-results] [--group-level="..."] 
+[--do-not-reduce] [--include-docs] [--exclude-results] [--exclude-endkey] 
+[--reverse-order] [--skip="..."] [--include-conflicts] [--include-missing-keys] 
+[--map="..."] [--reduce="..."] [--language="..."] design-doc/view-name [keys1] ... [keysN]
 ```
 
 
