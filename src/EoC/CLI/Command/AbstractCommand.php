@@ -120,12 +120,12 @@ abstract class AbstractCommand extends Command {
       if ($buffer = shmop_read($shmId, 0, $shmSize))
         $database = unserialize($buffer);
       else
-        throw new \RuntimeException("You are not connected to the server.");
+        throw new \RuntimeException("No database selected.");
 
       shmop_close($shmId);
     }
     else
-      throw new \RuntimeException("You are not connected to the server.");
+      throw new \RuntimeException("No database selected.");
 
     return $database;
   }
