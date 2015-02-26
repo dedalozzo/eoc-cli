@@ -54,7 +54,7 @@ try {
   $console->add(new Command\UseCommand());
   $console->add(new Command\InfoCommand());
   $console->add(new Command\CommitCommand());
-  $console->add(new Command\CompactCommand()); //compactdb and compactview parameter --view=
+  $console->add(new Command\CompactCommand());
   $console->add(new Command\CleanupCommand());
   $console->add(new Command\CreateCommand());
   $console->add(new Command\DeleteCommand());
@@ -62,7 +62,6 @@ try {
   $console->add(new Command\RestartCommand());
   $console->add(new Command\LogCommand());
   $console->add(new Command\UuidsCommand());
-
   //  $console->add(new Command\Stats());
   //  $console->add(new Command\AllDbs());
   //  $console->add(new Command\DbUpdates());
@@ -72,6 +71,20 @@ try {
   //  $console->add(new Command\DbChangesCommand());
   //  $console->add(new Command\StartReplicationCommand());
   //  $console->add(new Command\StopReplicationCommand());
+  //  $console->add(new Command\MissingRevsCommand());
+  //  $console->add(new Command\RevsDiffCommand());
+  //  $console->add(new Command\SetRevsLimitCommand());
+  //  $console->add(new Command\GetDocETagCommand());
+  //  $console->add(new Command\GetDoc());
+  //  $console->add(new Command\PutDoc());
+  //  $console->add(new Command\DeleteDoc());
+  //  $console->add(new Command\CopyDoc());
+  //  $console->add(new Command\PurgeCommand());
+  //  $console->add(new Command\BulkCommand());
+  //  $console->add(new Command\GetAttachmentInfo());
+  //  $console->add(new Command\PutAttachment());
+  //  $console->add(new Command\DeleteAttachment());
+  //  $console->add(new Command\GetDesignDocInfo());
 
   $console->run();
 }
