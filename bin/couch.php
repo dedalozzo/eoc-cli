@@ -61,6 +61,7 @@ try {
   $console->add(new Command\QueryCommand());
   $console->add(new Command\RestartCommand());
   $console->add(new Command\LogCommand());
+  $console->add(new Command\UuidsCommand());
 
   //  $console->add(new Command\Stats());
   //  $console->add(new Command\AllDbs());
