@@ -45,9 +45,9 @@ class LogCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $bytes = (int)$input->getOption('bytes');
-    $this->couch->getLogTail($bytes);
 
-    parent::execute($input, $output);
+    $couch = $this->getConnection();
+    $couch->getLogTail($bytes);
   }
 
 }
