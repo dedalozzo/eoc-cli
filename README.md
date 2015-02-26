@@ -30,16 +30,17 @@ EoC CLI Installation
 --------------------
 Once you have installed Composer, it's easy install Elephant on Couch CLI.
 
-1.    Move into the directory where you prefer install EoC CLI:
+1.  Move into the directory where you prefer install EoC CLI:
   ``` sh
   cd /usr/local
   ```
 
-2.    Create a project for EoC CLI:
+2.  Create a project for EoC CLI:
   ``` sh
   sudo composer create-project 3f/eoc-cli
   ```
-3.    For your convenience create a symbolic link for the couch executable in your `/usr/local/bin` directory:
+  
+3.  For your convenience create a symbolic link for the couch executable in your `/usr/local/bin` directory:
   ``` sh
   sudo ln -s /user/local/eoc-cli/bin/couch.php /usr/local/bin/couch
   ```
@@ -48,97 +49,93 @@ Once you have installed Composer, it's easy install Elephant on Couch CLI.
 Supported Commands
 ------------------
 Lists commands. 
-  ``` sh
-  couch list [--xml] [--raw] [--format="..."] [namespace]
-  ```
+``` sh
+couch list [--xml] [--raw] [--format="..."] [namespace]
+```
 
 Displays help for a command. 
-  ``` sh
-  couch help [--xml] [--format="..."] [--raw] [command_name]
-  ```
+``` sh
+couch help [--xml] [--format="..."] [--raw] [command_name]
+```
 
 Connects to CouchDB server. 
-  ``` sh
-  couch connect [-s|--server[="..."]] user
-  ```
+``` sh
+couch connect [-s|--server[="..."]] user
+```
 
 Uses the specified database. 
-  ``` sh
-  couch use database
-  ```
+``` sh
+couch use database
+```
 
 Alias of `use`.
-  ``` sh
-  couch select database
-  ```
+``` sh
+couch select database
+```
 
 Creates a new database.
-  ``` sh
-  couch create database
-  ```
+``` sh
+couch create database
+```
 
 Deletes the specified database, if not in use. 
-  ``` sh
-  couch delete database
-  ```
+``` sh
+couch delete database
+```
 
 Displays information about the selected database.
-  ``` sh
-  couch info
-  ```
+``` sh
+couch info
+```
 
 Starts a compaction for the current selected database or just a set of views.
-  ``` sh
-  couch compact [--design-doc="..."]
-  ```
+``` sh
+couch compact [--design-doc="..."]
+```
 
 Removes all outdated view indexes.
-  ``` sh
-  couch compact [--design-doc="..."]
-  ```
+``` sh
+couch compact [--design-doc="..."]
+```
 
 Makes sure all uncommited database changes are written and synchronized to the disk.
-  ``` sh
-  couch commit
-  ```
+``` sh
+couch commit
+```
 
 Returns the tail of the server's log file.
-  ``` sh
-  couch log [--bytes[="..."]]
-  ```
+``` sh
+couch log [--bytes[="..."]]
+```
 
 Restarts CouchDB server. 
-  ``` sh
-  couch restart
-  ```
+``` sh
+couch restart
+```
 
 Gets the list of active tasks. 
-  ``` sh
-  couch status
-  ```
+``` sh
+couch status
+```
 
 Returns a list of generated UUIDs.
-  ``` sh
-  couch uuids [--count[="..."]]
-  ```
+``` sh
+couch uuids [--count[="..."]]
+```
 
 Displays CouchDB server and client versions. 
-  ``` sh
-  couch version
-  ```
+``` sh
+couch version
+```
 
 Queries a view and outputs the result. 
-  ``` sh
-  couch query [--key="..."] [--startkey="..."] [--endkey="..."] 
-  [--startkey-docid="..."] [--endkey-docid="..."] [--limit="..."] 
-  [--group-results] [--group-level="..."] 
-  [--do-not-reduce] [--include-docs] 
-  [--exclude-results] [--exclude-endkey] 
-  [--reverse-order] [--skip="..."] 
-  [--include-conflicts] [--include-missing-keys] 
-  [--map="..."] [--reduce="..."] [--language="..."] 
-  design-doc/view-name [keys1] ... [keysN]
-  ```
+``` sh
+couch query [--key="..."] [--startkey="..."] [--endkey="..."] [--startkey-docid="..."] 
+[--endkey-docid="..."] [--limit="..."] [--group-results] [--group-level="..."] 
+[--do-not-reduce] [--include-docs] [--exclude-results] [--exclude-endkey] 
+[--reverse-order] [--skip="..."] [--include-conflicts] [--include-missing-keys] 
+[--map="..."] [--reduce="..."] [--language="..."] design-doc/view-name [keys1] ... [keysN]
+```
 
 
 Requirements
