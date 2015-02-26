@@ -35,11 +35,9 @@ class CleanupCommand extends AbstractCommand {
    * @brief Executes the command.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
-
+    $couch = $this->getConnection();
+    $couch->selectDb($this->getDatabase());
     $couch->cleanupViews();
-
-    parent::execute($input, $output);
   }
 
 }
