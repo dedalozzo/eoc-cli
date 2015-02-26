@@ -160,7 +160,8 @@ class QueryCommand extends AbstractCommand {
    * @bug https://github.com/dedalozzo/pit-press/issues/1
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
-    $couch = $this->di['couchdb'];
+    $couch = $this->getConnection();
+    $couch->selectDb($this->getDatabase());
 
     $view = $input->getArgument('design-doc/view-name');
 
@@ -274,7 +275,6 @@ class QueryCommand extends AbstractCommand {
         throw new \InvalidArgumentException("You have to specify design-doc/view-name.");
     }
 
-    parent::execute($input, $output);
   }
 
 }
