@@ -34,12 +34,10 @@ Once you have installed Composer, it's easy install Elephant on Couch CLI.
 ``` sh
 cd /usr/local
 ```
-
 2. Create a project for EoC CLI:
 ``` sh
 sudo composer create-project 3f/eoc-cli
 ```
-
 3. For your convenience create a symbolic link for the couch executable in your `/usr/local/bin` directory:
 ``` sh
 sudo ln -s /user/local/eoc-cli/bin/couch.php /usr/local/bin/couch
