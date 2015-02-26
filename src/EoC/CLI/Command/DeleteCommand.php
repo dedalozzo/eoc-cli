@@ -28,7 +28,7 @@ class DeleteCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("delete");
-    $this->setDescription("Deletes the PitPress database.");
+    $this->setDescription("Deletes the specified database, if not in use.");
 
     $this->addArgument("database",
       InputArgument::REQUIRED,
