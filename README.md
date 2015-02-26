@@ -68,7 +68,7 @@ Uses the specified database.
 couch use database
 ```
 
-Alias of `use` 
+Alias of `use`.
 ``` sh
 couch select database
 ```
