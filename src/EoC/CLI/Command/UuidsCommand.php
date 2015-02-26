@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @file LogCommand.php
- * @brief This file contains the LogCommand class.
+ * @file UuidsCommand.php
+ * @brief This file contains the UuidsCommand class.
  * @details
  * @author Filippo F. Fadda
  */
@@ -11,17 +11,16 @@
 namespace EoC\CLI\Command;
 
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
 /**
- * @brief Returns the tail of the server's log file.
+ * @brief Returns a list of generated UUIDs.
  * @nosubgrouping
  */
-class LogCommand extends AbstractCommand {
+class UuidsCommand extends AbstractCommand {
 
 
   /**
@@ -45,9 +44,9 @@ class LogCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $count = (int)$input->getOption('count');
-    $this->couch->getUuids($count);
 
-    parent::execute($input, $output);
+    $couch = $this->getConnection();
+    $output->writeln($couch->getUuids($count));
   }
 
 }
