@@ -128,6 +128,12 @@ Displays CouchDB server and client versions.
 couch version
 ```
 
+Returns a list of all databases on this server. 
+``` sh
+couch alldbs
+```
+
+
 Queries a view and outputs the result. 
 ``` sh
 couch query [--key="..."] [--startkey="..."] [--endkey="..."] [--startkey-docid="..."] 
