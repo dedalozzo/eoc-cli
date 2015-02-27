@@ -80,7 +80,7 @@ class ConnectCommand extends AbstractCommand {
 
     if ($shmKey = ftok($_SERVER['PHP_SELF'], 'c')) {
 
-      if (@$shmId = shmop_open($shmKey, "a", 0644, 0))
+      if (@$shmId = shmop_open($shmKey, 'a', 0644, 0))
         shmop_delete($shmId);
 
       $shmId = shmop_open($shmKey, 'n', 0644, mb_strlen($serialized));
