@@ -270,7 +270,7 @@ class QueryCommand extends AbstractCommand {
       $names = explode('/', $view, 2);
 
       if (count($names) == 2)
-        print_r($couch->queryView($names[0], $names[1], $keys, $opts));
+        var_dump($couch->queryView($names[0], $names[1], $keys, $opts));
       else
         throw new \InvalidArgumentException("You have to specify design-doc/view-name.");
     }
