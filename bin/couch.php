@@ -62,8 +62,8 @@ try {
   $console->add(new Command\RestartCommand());
   $console->add(new Command\LogCommand());
   $console->add(new Command\UuidsCommand());
+  $console->add(new Command\AllDbsCommand());
   //  $console->add(new Command\Stats());
-  //  $console->add(new Command\AllDbs());
   //  $console->add(new Command\DbUpdates());
   //  $console->add(new Command\getConfig());
   //  $console->add(new Command\setKey());
