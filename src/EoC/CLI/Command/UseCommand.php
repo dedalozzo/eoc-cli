@@ -43,15 +43,22 @@ class UseCommand extends AbstractCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     $database = (string)$input->getArgument('database');
 
-    $shmKey = ftok($_SERVER['PHP_SELF'], 'd');
-    $shmId = shmop_open($shmKey, "c", 0644, mb_strlen($database));
+    if ($shmKey = ftok($_SERVER['PHP_SELF'], 'd')) {
 
-    if ($shmId) {
-      $shmBytesWritten = shmop_write($shmId, $database, 0);
-      shmop_close($shmId);
+      if (@$shmId = shmop_open($shmKey, "a", 0644, 0))
+        shmop_delete($shmId);
+
+      $shmId = shmop_open($shmKey, 'n', 0644, mb_strlen($database));
+
+      if ($shmId) {
+        $shmBytesWritten = shmop_write($shmId, $database, 0);
+        shmop_close($shmId);
+      }
+      else
+        throw new \RuntimeException("Couldn't create shared memory segment.");
     }
     else
-      throw new \RuntimeException("Couldn't create shared memory segment.");
+      throw new \RuntimeException("Cannot get a System V IPC key.");
   }
 
 }
