@@ -72,15 +72,28 @@ class ConnectCommand extends AbstractCommand {
 
     $serialized = serialize($connection);
 
-    $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
-    $shmId = shmop_open($shmKey, "c", 0644, mb_strlen($serialized));
+    // We reset the database in use.
+    if ($shmKey = ftok($_SERVER['PHP_SELF'], 'd')) {
+      if (@$shmId = shmop_open($shmKey, "a", 0644, 0))
+        shmop_delete($shmId);
+    }
 
-    if ($shmId) {
-      $shmBytesWritten = shmop_write($shmId, $serialized, 0);
-      shmop_close($shmId);
+    if ($shmKey = ftok($_SERVER['PHP_SELF'], 'c')) {
+
+      if (@$shmId = shmop_open($shmKey, "a", 0644, 0))
+        shmop_delete($shmId);
+
+      $shmId = shmop_open($shmKey, 'n', 0644, mb_strlen($serialized));
+
+      if ($shmId) {
+        $shmBytesWritten = shmop_write($shmId, $serialized, 0);
+        shmop_close($shmId);
+      }
+      else
+        throw new \RuntimeException("Couldn't create shared memory segment.");
     }
     else
-      throw new \RuntimeException("Couldn't create shared memory segment.");
+      throw new \RuntimeException("Cannot get a System V IPC key.");
   }
 
 }
