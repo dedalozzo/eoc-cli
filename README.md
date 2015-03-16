@@ -12,7 +12,7 @@ EoC CLI is a CouchDB's Command-Line Interface (CLI) made in PHP programming lang
 Composer Installation
 ---------------------
 
-To install EoC Server, you first need to install [Composer](http://getcomposer.org/), a Package Manager for
+To install EoC CLI, you first need to install [Composer](http://getcomposer.org/), a Package Manager for
 PHP, following those few [steps](http://getcomposer.org/doc/00-intro.md#installation-nix):
 
 ``` sh
@@ -156,4 +156,4 @@ Filippo F. Fadda - <filippo.fadda@programmazione.it> - <http://www.linkedin.com/
 
 License
 -------
-Elephant on Couch Server is licensed under the Apache License, Version 2.0 - see the LICENSE file for details.
+Elephant on Couch Command-Line Interface is licensed under the Apache License, Version 2.0 - see the LICENSE file for details.
