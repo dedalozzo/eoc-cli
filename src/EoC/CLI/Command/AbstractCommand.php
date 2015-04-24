@@ -46,9 +46,9 @@ abstract class AbstractCommand extends Command {
 
 
   /**
-   * @brief Returns `true` in case `$arg` is enclosed between paired delimiters ('' or ""), `false` otherwise.
+   * @brief Returns `true` in case `$arg` is enclosed between paired delimiters (`''` or `""`), `false` otherwise.
    * @details In case the argument is a string, paired delimiters are removed.
-   * @param[in|out] $arg The command line argument.
+   * @param[in,out] $arg The command line argument.
    */
   protected function isString(&$arg) {
     if (preg_match('/\A[\'"]([^\'"]+)[\'"]\z/i', $arg, $matches)) {
@@ -81,7 +81,7 @@ abstract class AbstractCommand extends Command {
 
   /**
    * @brief Retrieves the connection in use.
-   * @return \EoC\Couch The server connection.
+   * @return EoC::Couch The server connection.
    */
   protected function getConnection() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
