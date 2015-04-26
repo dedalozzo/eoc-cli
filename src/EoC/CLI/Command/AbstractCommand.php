@@ -81,7 +81,7 @@ abstract class AbstractCommand extends Command {
 
   /**
    * @brief Retrieves the connection in use.
-   * @return EoC::Couch The server connection.
+   * @retval EoC::Couch The server connection.
    */
   protected function getConnection() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'c');
@@ -107,7 +107,7 @@ abstract class AbstractCommand extends Command {
 
   /**
    * @brief Retrieves the database in use.
-   * @return string The database name.
+   * @retval string The database name.
    */
   protected function getDatabase() {
     $shmKey = ftok($_SERVER['PHP_SELF'], 'd');

@@ -35,7 +35,7 @@ class InfoCommand extends AbstractCommand {
    * @brief Executes the command.
    * @param[in] InputInterface $input The input interface
    * @param[in] OutputInterface $output The output interface
-   * @return string Information about current database.
+   * @retval string Information about current database.
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
