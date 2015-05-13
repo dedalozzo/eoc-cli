@@ -1,9 +1,11 @@
 <?php
 
-//! @file Version.php
-//! @brief This file contains the Version class.
-//! @details
-//! @author Filippo F. Fadda
+/**
+ * @file Version.php
+ * @brief This file contains the Version class.
+ * @details
+ * @author Filippo F. Fadda
+ */
 
 
 namespace EoC\CLI;
