@@ -35,7 +35,8 @@ abstract class AbstractCommand extends Command {
 
   /**
    * @brief Returns `true` in case `$arg` seems to be the string representation of an array, `false` otherwise.
-   * @param[in] $arg The command line argument.
+   * @param[in] mixed $arg The command line argument.
+   * @return bool
    */
   protected function isArray($arg) {
     if (preg_match('/\A[\[]([^\[\]]+)[\]]\z/i', $arg, $matches))
@@ -48,7 +49,8 @@ abstract class AbstractCommand extends Command {
   /**
    * @brief Returns `true` in case `$arg` is enclosed between paired delimiters (`''` or `""`), `false` otherwise.
    * @details In case the argument is a string, paired delimiters are removed.
-   * @param[in,out] $arg The command line argument.
+   * @param[in,out] mixed $arg The command line argument.
+   * @return bool
    */
   protected function isString(&$arg) {
     if (preg_match('/\A[\'"]([^\'"]+)[\'"]\z/i', $arg, $matches)) {
@@ -62,8 +64,9 @@ abstract class AbstractCommand extends Command {
 
   /**
    * @brief Casts the argument to the right format and jsonify it when necessary.
-   * @param[in] $arg The command line argument.
-   * @param[in] boolean $encode (optional) JSON encodes `$arg`.
+   * @param[in] mixed $arg The command line argument.
+   * @param[in] bool $encode (optional) JSON encodes `$arg`.
+   * @return mixed
    */
   protected function castArg($arg, $encode = TRUE) {
     if ($this->isArray($arg))
