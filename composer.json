@@ -19,7 +19,7 @@
         "ext-curl": "*",
         "3f/eoc-client": "dev-master",
         "symfony/console": "2.5.0",
-        "monolog/monolog": "1.9.1"
+        "monolog/monolog": "~1"
     },
     "autoload": {
         "psr-0": {"EoC\\": "src/"}
