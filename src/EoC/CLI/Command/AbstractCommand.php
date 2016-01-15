@@ -47,18 +47,57 @@ abstract class AbstractCommand extends Command {
 
 
   /**
-   * @brief Returns `true` in case `$arg` is enclosed between paired delimiters (`''` or `""`), `false` otherwise.
-   * @details In case the argument is a string, paired delimiters are removed.
+   * @brief Returns `true` in case `$arg` is a formatted argument, `false` otherwise.
+   * @details The argument type can be specified using the syntax \%s/. The final slash is followed by the value.\n
+   *     \%s - the argument is treated as a string.\n
+   *     \%b - the argument is treated as a boolean.\n
+   *     \%i - the argument is treated as an integer.\n
+   *     \%f - the argument is treated as a float.
    * @param[in,out] mixed $arg The command line argument.
    * @return bool
    */
-  protected function isString(&$arg) {
-    if (preg_match('/\A[\'"]([^\'"]+)[\'"]\z/i', $arg, $matches)) {
-      $arg = $matches[1];
+  protected function isFormatted(&$arg) {
+    //  \A            # Assert position at the beginning of the string
+    //  (?P<type>     # Match the regular expression below and capture its match into backreference with name “type”
+    //                  # Match either the regular expression below (attempting the next alternative only if this one fails)
+    //        %s          # Match the characters “%s” literally
+    //     |            # Or match regular expression number 2 below (attempting the next alternative only if this one fails)
+    //        %b          # Match the characters “%b” literally
+    //     |            # Or match regular expression number 3 below (attempting the next alternative only if this one fails)
+    //        %i          # Match the characters “%i” literally
+    //     |            # Or match regular expression number 4 below (the entire group fails if this one fails to match)
+    //        %f          # Match the characters “%f” literally
+    //  )
+    //  /             # Match the character “/” literally
+    //  (?P<value>    # Match the regular expression below and capture its match into backreference with name “value”
+    //        .         # Match any single character that is not a line break character
+    //          +         # Between one and unlimited times, as many times as possible, giving back as needed (greedy)
+    //  )
+    //  \z            # Assert position at the very end of the string
+    if (preg_match('#\A(?P<type>%s|%b|%i|%f)/(?P<value>.+)\z#i', $arg, $matches)) {
+      $type = $matches['type'];
+      $value = $matches['value'];
+
+      switch ($type) {
+        case '%s':
+          $arg = (string)$value;
+          break;
+        case '%b':
+          $arg = (strtolower($value) === 'false') ? FALSE : (bool)$value;
+          break;
+        case '%i':
+          $arg = (integer)$value;
+          break;
+        case '%f':
+          $arg = (float)$value;
+          break;
+      }
+
       return TRUE;
     }
-    else
+    else {
       return FALSE;
+    }
   }
 
 
@@ -69,9 +108,10 @@ abstract class AbstractCommand extends Command {
    * @return mixed
    */
   protected function castArg($arg, $encode = TRUE) {
+    echo "Original argument: ".$arg.PHP_EOL;
     if ($this->isArray($arg))
       return $arg;
-    elseif ($this->isString($arg)) {
+    elseif ($this->isFormatted($arg)) {
       if ($encode)
         return json_encode($arg);
       else
