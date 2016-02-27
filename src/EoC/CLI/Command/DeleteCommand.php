@@ -14,6 +14,7 @@ namespace EoC\CLI\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 
 /**
@@ -50,10 +51,11 @@ class DeleteCommand extends AbstractCommand {
     }
     catch (\RuntimeException $e) {}
 
-    $dialog = $this->getHelperSet()->get('dialog');
-    $confirm = $dialog->ask($output, 'Are you sure you want delete the database? [Y/n]'.PHP_EOL, 'n');
+    $question = new ConfirmationQuestion('Are you sure you want delete the database? [Y/n]', FALSE);
 
-    if ($confirm == 'Y')
+    $helper = $this->getHelper('question');
+
+    if ($helper->ask($input, $output, $question))
       $couch->deleteDb($database);
   }
 
