@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 use EoC\Couch;
 use EoC\Adapter;
@@ -53,12 +54,12 @@ class ConnectCommand extends AbstractCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     $user = (string)$input->getArgument('user');
 
-    $dialog = $this->getHelper('dialog');
-    $password = $dialog->askHiddenResponse(
-      $output,
-      'Enter password:',
-      FALSE
-    );
+    $question = new Question('Enter password:');
+    $question->setHidden(true);
+    $question->setHiddenFallback(false);
+
+    $helper = $this->getHelper('question');
+    $password = $helper->ask($input, $output, $question);
 
     $server = (string)$input->getOption('server');
 
