@@ -280,7 +280,7 @@ class QueryCommand extends AbstractCommand {
           $language = "php";
       }
       else
-        throw new \InvalidArgumentException("You have to specify map, reduce and language options.");
+        throw new \InvalidArgumentException("You didn't provided the map function.");
 
       print_r($couch->queryTempView($map, $reduce, $keys, $opts, $language));
     }
