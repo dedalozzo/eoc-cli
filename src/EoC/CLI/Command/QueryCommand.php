@@ -177,7 +177,6 @@ class QueryCommand extends AbstractCommand {
 
   /**
    * @brief Executes the command.
-   * @bug https://github.com/dedalozzo/pit-press/issues/1
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
@@ -265,22 +264,24 @@ class QueryCommand extends AbstractCommand {
     if ($input->getOption('include-missing-keys'))
       $opts->includeMissingKeys();
 
-
-    // Map and reduce functions.
-    if ($fileName = $input->getOption('map')) {
-      $map = file_get_contents($fileName);
-
-      if ($fileName = $input->getOption('reduce'))
-        $reduce = file_get_contents($fileName);
-      else
-        $reduce = "";
-
-      $language = $input->getOption('language');
-      if (empty($language))
-        $language = "php";
-    }
-
     if ($view == "_temp_view") {
+
+      // Map and reduce functions.
+      if ($fileName = $input->getOption('map')) {
+        $map = file_get_contents($fileName);
+
+        if ($fileName = $input->getOption('reduce'))
+          $reduce = file_get_contents($fileName);
+        else
+          $reduce = "";
+
+        $language = $input->getOption('language');
+        if (empty($language))
+          $language = "php";
+      }
+      else
+        throw new \InvalidArgumentException("You have to specify map, reduce and language options.");
+
       print_r($couch->queryTempView($map, $reduce, $keys, $opts, $language));
     }
     elseif ($view == "_all_docs") {
