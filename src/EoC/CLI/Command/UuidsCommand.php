@@ -28,7 +28,7 @@ class UuidsCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("uuids");
-    $this->setDescription("Returns a list of generated UUIDs.");
+    $this->setDescription("Returns a list of generated UUIDs");
 
     // General options.
     $this->addOption("count",

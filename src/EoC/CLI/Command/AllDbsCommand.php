@@ -27,7 +27,7 @@ class AllDbsCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("alldbs");
-    $this->setDescription("Returns a list of all databases on this server.");
+    $this->setDescription("Returns a list of all databases on this server");
   }
 
 

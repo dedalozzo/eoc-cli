@@ -27,7 +27,7 @@ class InfoCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("info");
-    $this->setDescription("Displays information about the selected database.");
+    $this->setDescription("Displays information about the selected database");
   }
 
 

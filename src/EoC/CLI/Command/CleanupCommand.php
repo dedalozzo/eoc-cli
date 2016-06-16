@@ -27,7 +27,7 @@ class CleanupCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("cleanup");
-    $this->setDescription("Removes all outdated view indexes.");
+    $this->setDescription("Removes all outdated view indexes");
   }
 
 

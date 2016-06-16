@@ -34,7 +34,7 @@ class ConnectCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("connect");
-    $this->setDescription("Connects to CouchDB server.");
+    $this->setDescription("Connects to CouchDB server");
 
     $this->addArgument("user",
       InputArgument::REQUIRED,

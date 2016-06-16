@@ -28,7 +28,7 @@ class UseCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("use");
-    $this->setDescription("Uses the specified database.");
+    $this->setDescription("Uses the specified database");
     $this->setAliases(['select']);
 
     $this->addArgument("database",

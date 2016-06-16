@@ -29,7 +29,7 @@ class CommitCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("commit");
-    $this->setDescription("Makes sure all uncommited database changes are written and synchronized to the disk.");
+    $this->setDescription("Makes sure all uncommited database changes are written and synchronized to the disk");
   }
 
 

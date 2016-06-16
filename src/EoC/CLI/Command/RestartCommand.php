@@ -27,7 +27,7 @@ class RestartCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("restart");
-    $this->setDescription("Restarts CouchDB server.");
+    $this->setDescription("Restarts CouchDB server");
   }
 
 

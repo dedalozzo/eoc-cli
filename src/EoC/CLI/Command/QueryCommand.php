@@ -32,7 +32,7 @@ class QueryCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("query");
-    $this->setDescription("Queries a view and outputs the result.");
+    $this->setDescription("Queries a view and outputs the result");
 
     $this->addArgument("design-doc/view-name",
       InputArgument::REQUIRED,

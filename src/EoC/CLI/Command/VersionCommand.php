@@ -27,7 +27,7 @@ class VersionCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("version");
-    $this->setDescription("Displays CouchDB server and client versions.");
+    $this->setDescription("Displays CouchDB server and client versions");
   }
 
 

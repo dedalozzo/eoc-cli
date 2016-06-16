@@ -28,7 +28,7 @@ class CompactCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("compact");
-    $this->setDescription("Starts a compaction for the current selected database or just a set of views.");
+    $this->setDescription("Starts a compaction for the current selected database or just a set of views");
 
     $this->addOption("design-doc",
       NULL,

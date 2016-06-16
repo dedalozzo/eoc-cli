@@ -29,7 +29,7 @@ class LogCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("log");
-    $this->setDescription("Returns the tail of the server's log file.");
+    $this->setDescription("Returns the tail of the server's log file");
 
     // General options.
     $this->addOption("bytes",

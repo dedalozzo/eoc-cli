@@ -28,7 +28,7 @@ class CreateCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("create");
-    $this->setDescription("Creates a new database.");
+    $this->setDescription("Creates a new database");
 
     $this->addArgument("database",
       InputArgument::REQUIRED,

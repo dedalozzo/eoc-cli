@@ -27,7 +27,7 @@ class StatusCommand extends AbstractCommand {
    */
   protected function configure() {
     $this->setName("status");
-    $this->setDescription("Gets the list of active tasks.");
+    $this->setDescription("Gets the list of active tasks");
   }
 
 
