@@ -95,7 +95,7 @@ couch compact [--design-doc="..."]
 
 Removes all outdated view indexes.
 ``` sh
-couch compact [--design-doc="..."]
+couch cleanup
 ```
 
 Makes sure all uncommited database changes are written and synchronized to the disk.
