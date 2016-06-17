@@ -36,95 +36,115 @@ class QueryCommand extends AbstractCommand {
 
     $this->addArgument("design-doc/view-name",
       InputArgument::REQUIRED,
-      "The design document name followed by the view you want query. In case of a temporary view,
-      use: _temp_view --map=map.txt --reduce=reduce.txt. The files map.txt and reduce.txt must contains the map and
-      reduce functions implementation.");
+      <<<'DESC'
+The design document name followed by the view you want query
+In case of a temporary view, use: _temp_view --map=map.txt --reduce=reduce.txt.
+The files map.txt and reduce.txt must contains the map and reduce functions implementation.
+DESC
+    );
 
     $this->addArgument("keys",
       InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
-      "Used to retrieve just the view rows matching that set of keys. Rows are returned in the order of the specified
-      keys. Combining this feature with --include-docs results in the so-called multi-document-fetch feature.
-      Keys must be separated by a space.
-      The value is treated as string unless you specify a type for it. Supported types are string, integer, float and boolean.
-      The argument type can be specified using the syntax %b/false. The slash is followed by the value.
-          %s - the argument is treated as a string.
-          %b - the argument is treated as a boolean.
-          %i - the argument is treated as an integer.
-          %f - the argument is treated as a float.");
+      <<<'DESC'
+Used to retrieve just the view rows matching that set of keys
+Rows are returned in the order of the specified keys.
+Combining this feature with --include-docs results in the so-called multi-document-fetch feature.
+Keys must be separated by a space.
+The value is treated as string unless you specify a type for it.
+Supported types are string, integer, float and boolean.
+The argument type can be specified using the syntax %b/false. The slash is followed by the value.
+    %s - the argument is treated as a string.
+    %b - the argument is treated as a boolean.
+    %i - the argument is treated as an integer.
+    %f - the argument is treated as a float.
+DESC
+   );
 
     // General options.
     $this->addOption("key",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Returns only documents that match the specified key.
-      The value is treated as string unless you specify a type for it. Supported types are string, integer, float and boolean.
-      The argument type can be specified using the syntax %b/false. The slash is followed by the value.
-          %s - the argument is treated as a string.
-          %b - the argument is treated as a boolean.
-          %i - the argument is treated as an integer.
-          %f - the argument is treated as a float.");
+      <<<'DESC'
+Returns only documents that match the specified key
+The value is treated as string unless you specify a type for it.
+Supported types are string, integer, float and boolean.
+The argument type can be specified using the syntax %b/false. The slash is followed by the value.
+    %s - the argument is treated as a string.
+    %b - the argument is treated as a boolean.
+    %i - the argument is treated as an integer.
+    %f - the argument is treated as a float.
+DESC
+    );
 
     $this->addOption("startkey",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Defines the first key to be included in the range.
-      In case the key is a string, it must be quoted with double quotes and escaped, like --startkey=mykey.
-      To provide a complex key, instead, you must use --startkey=[book,{}]. The {} symbol is a wildcard used in
-      JavaScript to create an empty object.
-      Don't put a space between the values of your complex key, because the console will consider them like new arguments.
-      If your key contains a space, remember to backspace it like follows: --startkey=[my\\ book,{}].
-      The value is treated as string unless you specify a type for it. Supported types are string, integer, float and boolean.
-      The argument type can be specified using the syntax %b/false. The slash is followed by the value.
-          %s - the argument is treated as a string.
-          %b - the argument is treated as a boolean.
-          %i - the argument is treated as an integer.
-          %f - the argument is treated as a float.");
+      <<<'DESC'
+Defines the first key to be included in the range
+In case the key is a string, it must be quoted with double quotes and escaped, like --startkey=mykey.
+To provide a complex key, instead, you must use --startkey=[book,{}].
+The {} symbol is a wildcard used in JavaScript to create an empty object.
+Don't put a space between the values of your complex key, because the console will consider them like new arguments.
+If your key contains a space, remember to backspace it like follows: --startkey=[my\\ book,{}].
+The value is treated as string unless you specify a type for it.
+Supported types are string, integer, float and boolean.
+The argument type can be specified using the syntax %b/false. The slash is followed by the value.
+    %s - the argument is treated as a string.
+    %b - the argument is treated as a boolean.
+    %i - the argument is treated as an integer.
+    %f - the argument is treated as a float.
+DESC
+    );
 
     $this->addOption("endkey",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Defines the last key to be included in the range.
-      The value is treated as string unless you specify a type for it. Supported types are string, interger, float and boolean.
-      The argument type can be specified using the syntax %b/false. The slash is followed by the value.
-          %s - the argument is treated as a string.
-          %b - the argument is treated as a boolean.
-          %i - the argument is treated as an integer.
-          %f - the argument is treated as a float.");
+      <<<'DESC'
+Defines the last key to be included in the range
+The value is treated as string unless you specify a type for it.
+Supported types are string, interger, float and boolean.
+The argument type can be specified using the syntax %b/false. The slash is followed by the value.
+    %s - the argument is treated as a string.
+    %b - the argument is treated as a boolean.
+    %i - the argument is treated as an integer.
+    %f - the argument is treated as a float.          
+DESC
+    );
 
     $this->addOption("startkey-docid",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Sets the ID of the document with which to start the range.");
+      "Sets the ID of the document with which to start the range");
 
     $this->addOption("endkey-docid",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Sets the ID of the document with which to end the range.");
+      "Sets the ID of the document with which to end the range");
 
     $this->addOption("limit",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Limit the number of results.");
+      "Limit the number of results");
 
     $this->addOption("group-results",
       NULL,
       InputOption::VALUE_NONE,
-      "Results should be grouped.");
+      "Results should be grouped");
 
     $this->addOption("group-level",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Level at which documents should be grouped.");
+      "Level at which documents should be grouped");
 
     $this->addOption("do-not-reduce",
       NULL,
       InputOption::VALUE_NONE,
-      "Even is a reduce function is defined for the view, doesn't call it.");
+      "Even is a reduce function is defined for the view, doesn't call it");
 
     $this->addOption("include-docs",
       NULL,
       InputOption::VALUE_NONE,
-      "Includes documents in the output.");
+      "Includes documents in the output");
 
     $this->addOption("exclude-results",
       NULL,
@@ -134,17 +154,17 @@ class QueryCommand extends AbstractCommand {
     $this->addOption("exclude-endkey",
       NULL,
       InputOption::VALUE_NONE,
-      "Tells CouchDB to not include end key in the result.");
+      "Tells CouchDB to not include end key in the result");
 
     $this->addOption("reverse-order",
       NULL,
       InputOption::VALUE_NONE,
-      "Reverses order of results.");
+      "Reverses order of results");
 
     $this->addOption("skip",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Skips the defined number of documents.");
+      "Skips the defined number of documents");
 
     $this->addOption("include-conflicts",
       NULL,
@@ -154,24 +174,24 @@ class QueryCommand extends AbstractCommand {
     $this->addOption("include-missing-keys",
       NULL,
       InputOption::VALUE_NONE,
-      "Includes all the rows, even if a match for a key is not found.");
+      "Includes all the rows, even if a match for a key is not found");
 
 
     // Temporary view options.
     $this->addOption("map",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Load map function from this file. To be used with _temp_view only, ignored otherwise.");
+      "Load map function from this file. To be used with _temp_view only, ignored otherwise");
 
     $this->addOption("reduce",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Load reduce function from this file. To be used with _temp_view only, ignored otherwise.");
+      "Load reduce function from this file. To be used with _temp_view only, ignored otherwise");
 
     $this->addOption("language",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "The language used to implement the map and reduce functions. If no specified, PHP assumed.");
+      "The language used to implement the map and reduce functions. If no specified, PHP assumed");
   }
 
 

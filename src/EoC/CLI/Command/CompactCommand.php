@@ -33,7 +33,7 @@ class CompactCommand extends AbstractCommand {
     $this->addOption("design-doc",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Name of the design document where are stored the views to compact.");
+      "Name of the design document where are stored the views to compact");
   }
 
 

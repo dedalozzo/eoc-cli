@@ -38,12 +38,16 @@ class ConnectCommand extends AbstractCommand {
 
     $this->addArgument("user",
       InputArgument::REQUIRED,
-      "The CouchDB user name to use when connecting to the server.");
+      "The CouchDB user name to use when connecting to the server");
 
     $this->addOption("server",
       "s",
       InputOption::VALUE_OPTIONAL,
-      "Connects to the CouchDB server on the given host. Server must be expressed as host:port according to RFC 3986.",
+      <<<'DESC'
+Connects to the CouchDB server on the given host
+Server must be expressed as host:port according to RFC 3986.
+DESC
+      ,
       Adapter\AbstractAdapter::DEFAULT_SERVER);
   }
 

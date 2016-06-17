@@ -35,7 +35,7 @@ class LogCommand extends AbstractCommand {
     $this->addOption("bytes",
       NULL,
       InputOption::VALUE_OPTIONAL,
-      "How many bytes to return from the end of the log file.",
+      "How many bytes to return from the end of the log file",
       1000);
   }
 

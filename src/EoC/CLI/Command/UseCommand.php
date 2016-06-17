@@ -33,7 +33,7 @@ class UseCommand extends AbstractCommand {
 
     $this->addArgument("database",
       InputArgument::REQUIRED,
-      "The CouchDB database name to use.");
+      "The CouchDB database name to use");
   }
 
 

@@ -33,7 +33,7 @@ class DeleteCommand extends AbstractCommand {
 
     $this->addArgument("database",
       InputArgument::REQUIRED,
-      "The CouchDB database name to delete.");
+      "The CouchDB database name to delete");
   }
 
 

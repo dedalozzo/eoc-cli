@@ -34,7 +34,7 @@ class UuidsCommand extends AbstractCommand {
     $this->addOption("count",
       NULL,
       InputOption::VALUE_OPTIONAL,
-      "Requested UUIDs number.",
+      "Requested UUIDs number",
       1);
   }
 
