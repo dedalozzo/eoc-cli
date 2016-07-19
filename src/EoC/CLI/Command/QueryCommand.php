@@ -85,7 +85,7 @@ In case the key is a string, it must be quoted with double quotes and escaped, l
 To provide a complex key, instead, you must use --startkey=[book,{}].
 The {} symbol is a wildcard used in JavaScript to create an empty object.
 Don't put a space between the values of your complex key, because the console will consider them like new arguments.
-If your key contains a space, remember to backspace it like follows: --startkey=[my\\ book,{}].
+If your key contains a space, remember to backspace it like follows: --startkey=[my\ book,{}].
 The value is treated as string unless you specify a type for it.
 Supported types are string, integer, float and boolean.
 The argument type can be specified using the syntax %b/false. The slash is followed by the value.
@@ -149,7 +149,7 @@ DESC
     $this->addOption("exclude-results",
       NULL,
       InputOption::VALUE_NONE,
-      "Don't get any data, but all meta-data for this View. The number of documents in this View for example.");
+      "Don't get any data, but all meta-data for this View; the number of documents in this View for example");
 
     $this->addOption("exclude-endkey",
       NULL,
@@ -169,7 +169,7 @@ DESC
     $this->addOption("include-conflicts",
       NULL,
       InputOption::VALUE_NONE,
-      "Includes conflict documents.");
+      "Includes conflict documents");
 
     $this->addOption("include-missing-keys",
       NULL,
@@ -181,17 +181,17 @@ DESC
     $this->addOption("map",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Load map function from this file. To be used with _temp_view only, ignored otherwise");
+      "Load map function from this file; to be used with _temp_view only, ignored otherwise");
 
     $this->addOption("reduce",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "Load reduce function from this file. To be used with _temp_view only, ignored otherwise");
+      "Load reduce function from this file; to be used with _temp_view only, ignored otherwise");
 
     $this->addOption("language",
       NULL,
       InputOption::VALUE_REQUIRED,
-      "The language used to implement the map and reduce functions. If no specified, PHP assumed");
+      "The language used to implement the map and reduce functions; if no specified, PHP assumed");
   }
 
 
