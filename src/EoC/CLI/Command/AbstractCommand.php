@@ -104,21 +104,31 @@ abstract class AbstractCommand extends Command {
   /**
    * @brief Casts the argument to the right format and jsonify it when necessary.
    * @param[in] mixed $arg The command line argument.
-   * @param[in] bool $encode (optional) JSON encodes `$arg`.
    * @return mixed
    */
-  protected function castArg($arg, $encode = TRUE) {
+  protected function castArg($arg) {
     echo "Original argument: ".$arg.PHP_EOL;
-    if ($this->isArray($arg))
-      return $arg;
-    elseif ($this->isFormatted($arg)) {
-      if ($encode)
-        return json_encode($arg);
-      else
-        return $arg;
+    if ($this->isArray($arg)) {
+      // Removes `[` and `]` from the argument.
+      $str = substr($arg, 1, -1);
+
+      // Splits a string using the delimiter `,` and returns the result as an array of strings.
+      $values = explode(',', $str);
+
+      $argument = [];
+      foreach ($values as $value) {
+        if ($this->isFormatted($value))
+          $argument[] = $value;
+        else
+          $argument[] = (string)$value;
+      }
+
+      return $argument;
     }
+    elseif ($this->isFormatted($arg))
+      return $arg;
     else
-      return $arg + 0;
+      return (string)$arg ;
   }
 
 
