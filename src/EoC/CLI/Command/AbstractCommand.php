@@ -107,7 +107,8 @@ abstract class AbstractCommand extends Command {
    * @return mixed
    */
   protected function castArg($arg) {
-    echo "Original argument: ".$arg.PHP_EOL;
+    //echo "Original argument: ".$arg.PHP_EOL;
+
     if ($this->isArray($arg)) {
       // Removes `[` and `]` from the argument.
       $str = substr($arg, 1, -1);
