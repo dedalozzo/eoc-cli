@@ -219,15 +219,15 @@ DESC
 
     // Key.
     if ($key = $input->getOption('key'))
-      $opts->setKey($this->castArg($key), FALSE);
+      $opts->setKey($this->castArg($key));
 
     // Start key.
     if ($startkey = $input->getOption('startkey'))
-      $opts->setStartKey($this->castArg($startkey), FALSE);
+      $opts->setStartKey($this->castArg($startkey));
 
     // End key.
     if ($endkey = $input->getOption('endkey'))
-      $opts->setEndKey($this->castArg($endkey), FALSE);
+      $opts->setEndKey($this->castArg($endkey));
 
     // Start doc id.
     if ($docId = $input->getOption('startkey-docid'))
