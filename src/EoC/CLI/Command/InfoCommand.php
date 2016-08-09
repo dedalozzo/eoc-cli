@@ -39,10 +39,9 @@ class InfoCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->selectDb($this->getDatabase());
 
     echo "[database]".PHP_EOL;
-    echo $couch->getDbInfo();
+    echo $couch->getDbInfo($this->getDatabase());
   }
 
 }
