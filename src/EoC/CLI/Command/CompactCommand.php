@@ -42,12 +42,11 @@ class CompactCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->selectDb($this->getDatabase());
 
     if ($designDoc = $input->getOption('design-doc'))
-      $couch->compactView($designDoc);
+      $couch->compactView($this->getDatabase(), $designDoc);
     else
-      $couch->compactDb();
+      $couch->compactDb($this->getDatabase());
   }
 
 }
