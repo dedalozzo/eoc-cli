@@ -36,8 +36,7 @@ class CleanupCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->selectDb($this->getDatabase());
-    $couch->cleanupViews();
+    $couch->cleanupViews($this->getDatabase());
   }
 
 }
