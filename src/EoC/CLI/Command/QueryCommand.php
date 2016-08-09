@@ -200,7 +200,6 @@ DESC
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->selectDb($this->getDatabase());
 
     $view = $input->getArgument('design-doc/view-name');
 
@@ -302,7 +301,7 @@ DESC
       else
         throw new \InvalidArgumentException("You didn't provided the map function.");
 
-      print_r($couch->queryTempView($map, $reduce, $keys, $opts, $language));
+      print_r($couch->queryTempView($this->getDatabase(), $map, $reduce, $keys, $opts, $language));
     }
     elseif ($view == "_all_docs") {
       print_r($couch->queryAllDocs($keys, $opts));
@@ -311,7 +310,7 @@ DESC
       $names = explode('/', $view, 2);
 
       if (count($names) == 2)
-        var_dump($couch->queryView($names[0], $names[1], $keys, $opts));
+        var_dump($couch->queryView($this->getDatabase(), $names[0], $names[1], $keys, $opts));
       else
         throw new \InvalidArgumentException("You have to specify design-doc/view-name.");
     }
