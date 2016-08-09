@@ -304,13 +304,13 @@ DESC
       print_r($couch->queryTempView($this->getDatabase(), $map, $reduce, $keys, $opts, $language));
     }
     elseif ($view == "_all_docs") {
-      print_r($couch->queryAllDocs($keys, $opts));
+      print_r($couch->queryAllDocs($this->getDatabase(), $keys, $opts));
     }
     else {
       $names = explode('/', $view, 2);
 
       if (count($names) == 2)
-        var_dump($couch->queryView($this->getDatabase(), $names[0], $names[1], $keys, $opts));
+        print_r($couch->queryView($this->getDatabase(), $names[0], $names[1], $keys, $opts));
       else
         throw new \InvalidArgumentException("You have to specify design-doc/view-name.");
     }
