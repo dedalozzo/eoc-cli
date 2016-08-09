@@ -38,9 +38,8 @@ class CommitCommand extends AbstractCommand {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     $couch = $this->getConnection();
-    $couch->selectDb($this->getDatabase());
 
-    $time = TimeHelper::since($couch->ensureFullCommit(), TRUE);
+    $time = TimeHelper::since($couch->ensureFullCommit($this->getDatabase()), TRUE);
 
     $output->writeln(sprintf('File opened since: %d days, %d hours, %d minutes, %d seconds', $time['days'], $time['hours'], $time['minutes'], $time['seconds']));
   }
