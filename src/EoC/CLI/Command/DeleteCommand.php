@@ -60,7 +60,7 @@ class DeleteCommand extends AbstractCommand {
 
     $helper = $this->getHelper('question');
 
-    if ($helper->ask($input, $output, $question) or $input->getOption('no-interaction'))
+    if ($helper->ask($input, $output, $question) || $input->getOption('no-interaction'))
       $couch->deleteDb($database);
   }
 
