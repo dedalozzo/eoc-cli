@@ -46,14 +46,21 @@ class DeleteCommand extends AbstractCommand {
     $couch = $this->getConnection();
 
     // In case there is a database in use, we select it, because you the selected database can't be deleted.
-    if ($database === $this->getDatabase())
+    try {
+      $selected = $this->getDatabase();
+    }
+    catch (\RuntimeException $e) {
+      $selected = NULL;
+    }
+
+    if ($database === $selected)
       throw new \RuntimeException('You cannot delete the selected database.');
 
     $question = new ConfirmationQuestion('Are you sure you want delete the database? [Y/n]', FALSE);
 
     $helper = $this->getHelper('question');
 
-    if ($helper->ask($input, $output, $question))
+    if ($helper->ask($input, $output, $question) or $input->getOption('no-interaction'))
       $couch->deleteDb($database);
   }
 
