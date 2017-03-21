@@ -139,7 +139,7 @@ DESC
     $this->addOption("do-not-reduce",
       NULL,
       InputOption::VALUE_NONE,
-      "Even is a reduce function is defined for the view, doesn't call it");
+      "Even if a reduce function is defined for the view, doesn't call it");
 
     $this->addOption("include-docs",
       NULL,
