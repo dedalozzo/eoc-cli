@@ -18,13 +18,6 @@ use Symfony\Component\Console\Application;
 
 
 /**
- * @brief This class extends the Application class of Symfony framework, with methods aim to set the Phalcon Dependency
- * Injector.
+ * @brief This class extends the Application class of Symfony framework.
  */
-class Console extends Application {
-
-  protected $_di;
-
-
-
-}
+class Console extends Application {}
